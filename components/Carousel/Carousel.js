@@ -55,14 +55,16 @@ function createCarousel() {
   // right button click event
   rightButton.addEventListener('click', () => {
     imgArray[currentIndex].style.display = 'none';
-    currentIndex += 1;
+    if (currentIndex === 3) currentIndex = 0;
+    else currentIndex += 1;
     imgArray[currentIndex].style.display = 'block';
   })
 
   // left button click event
   leftButton.addEventListener('click', () => {
     imgArray[currentIndex].style.display = 'none';
-    currentIndex -= 1;
+    if (currentIndex === 0) currentIndex = 3;
+    else currentIndex -= 1;
     imgArray[currentIndex].style.display = 'block';
   })
 

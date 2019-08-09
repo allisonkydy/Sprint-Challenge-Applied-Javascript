@@ -32,6 +32,7 @@ function createCarousel() {
   carousel.classList.add('carousel');
   leftButton.classList.add('left-button');
   rightButton.classList.add('right-button');
+
   
   // set content
   img0.src = "./assets/carousel/mountains.jpeg";
@@ -47,5 +48,27 @@ function createCarousel() {
   carousel.appendChild(img3);
   carousel.appendChild(rightButton);
 
+  const imgArray = [img0, img1, img2, img3];
+  let currentIndex = 0;
+  img0.style.display = 'block';
+
+  // right button click event
+  rightButton.addEventListener('click', () => {
+    imgArray[currentIndex].style.display = 'none';
+    currentIndex += 1;
+    imgArray[currentIndex].style.display = 'block';
+  })
+
+  // left button click event
+  leftButton.addEventListener('click', () => {
+    imgArray[currentIndex].style.display = 'none';
+    currentIndex -= 1;
+    imgArray[currentIndex].style.display = 'block';
+  })
+
   return carousel;
 }
+
+const carouselContainer = document.querySelector('.carousel-container');
+
+carouselContainer.appendChild(createCarousel());

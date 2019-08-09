@@ -17,3 +17,38 @@
 // </div>
 //
 // Create a card for each of the articles and add the card to the DOM.
+
+function createCard(articleObj) {
+    // create elements
+    const card = document.createElement('div');
+    const headline = document.createElement('div');
+    const author = document.createElement('div');
+    const imgContainer = document.createElement('div');
+    const authorImg = document.createElement('img');
+    const byline = document.createElement('span');
+
+    // set classes
+    card.classList.add('card');
+    headline.classList.add('headline');
+    author.classList.add('author');
+    imgContainer.classList.add('img-container');
+
+    // set content
+    headline.textContent = articleObj.headline;
+    authorImg.src = articleObj.authorPhoto;
+    byline.textContent = `By ${articleObj.authorName}`;
+
+    // set structure
+    card.appendChild(headline);
+    card.appendChild(author);
+    author.appendChild(imgContainer);
+    author.appendChild(byline);
+    imgContainer.appendChild(authorImg);
+
+    return card;
+}
+
+// axios.get('https://lambda-times-backend.herokuapp.com/articles')
+//     .then(response => {
+//         console.log(Object.keys(response.data.articles));
+//     })

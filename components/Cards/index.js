@@ -52,14 +52,16 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
     .then(response => {
         // select cards container
         const cardsContainer = document.querySelector('.cards-container');
-        // get article topic arrays
-        const articleTopics = Object.values(response.data.articles);
-
+        // get article arrays
+        const articleContent = Object.entries(response.data.articles);
         // add a card for each article in each topic array
-        articleTopics.forEach(topic => {
-            topic.forEach(article => {
+        articleContent.forEach(topic => {
+            topic[1].forEach(article => {
                 // create a new card
                 const newCard = createCard(article);
+                // set card data attr
+                if (topic[0] === "node") newCard.dataset.topic = "node.js";
+                else newCard.dataset.topic = topic[0];
                 // add card to DOM
                 cardsContainer.appendChild(newCard);
             })

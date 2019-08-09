@@ -48,7 +48,23 @@ function createCard(articleObj) {
     return card;
 }
 
-// axios.get('https://lambda-times-backend.herokuapp.com/articles')
-//     .then(response => {
-//         console.log(Object.keys(response.data.articles));
-//     })
+axios.get('https://lambda-times-backend.herokuapp.com/articles')
+    .then(response => {
+        // select cards container
+        const cardsContainer = document.querySelector('.cards-container');
+        // get article topic arrays
+        const articleTopics = Object.values(response.data.articles);
+
+        // add a card for each article in each topic array
+        articleTopics.forEach(topic => {
+            topic.forEach(article => {
+                // create a new card
+                const newCard = createCard(article);
+                // add card to DOM
+                cardsContainer.appendChild(newCard);
+            })
+        })
+    })
+    .catch(err => {
+        console.log(err);
+    })
